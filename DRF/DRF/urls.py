@@ -17,13 +17,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from women.views import WomenViewSet
+from women.views import WomenAPIDestroy, WomenAPIList, WomenAPIUpdate
 from rest_framework import routers
 
-router = routers.SimpleRouter()
-router.register(r'women', WomenViewSet, basename='women')
+# router = routers.SimpleRouter()
+# router.register(r'women', WomenViewSet, basename='women')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/v1/', include(router.urls)), # http://127.0.0.1:8000/api/v1/women/
+    path("admin/", admin.site.urls),
+    path("api/v1/women/", WomenAPIList.as_view()),
+    path("api/v1/women/<int:pk>/", WomenAPIUpdate.as_view()),
+    path("api/v1/womendelete/<int:pk>/", WomenAPIDestroy.as_view()),
 ]
