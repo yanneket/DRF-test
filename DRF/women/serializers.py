@@ -9,4 +9,4 @@ class WomenSerializer(serializers.ModelSerializer):
         model = Women
         fields = '__all__'
 
-    
+        
